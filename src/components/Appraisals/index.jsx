@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import AppBar from '../AppBar';
 import NavBar from '../NavBar';
 import List from './List';
+import { toggleFilters } from '../../actions';
 
 const propTypes = {
   history: React.PropTypes.object.isRequired,
-  match: React.PropTypes.object.isRequired
+  match: React.PropTypes.object.isRequired,
+  onFilterClick: React.PropTypes.func.isRequired,
 }
 
 export class Appraisals extends Component {
   render() {
-    const { match, history } = this.props;
+    const { match, history, onFilterClick } = this.props;
 
     const createAppraisalItem = {
       key: 'NewItem',
@@ -53,7 +56,8 @@ export class Appraisals extends Component {
       {
         key: 'FilterItem',
         name: 'Filter',
-        iconProps: { iconName: 'Filter' }
+        iconProps: { iconName: 'Filter' },
+        onClick: () => onFilterClick()
       }
     ];
 
@@ -74,7 +78,7 @@ export class Appraisals extends Component {
 
        {/* Body */}
        <Switch>
-          <Route exact path={`${match.url}`} render={() => <div>List</div>}/>
+          <Route exact path={`${match.url}`} component={List}/>
           <Route path={`${match.url}/create`} render={() => <div>Create</div>}/>
           <Route path={`${match.url}/:appraisalId`} render={() => <div>Details</div>}/>
           <Route path={`${match.url}/:appraisalId/edit`} render={() => <div>Edit</div>}/>
@@ -86,4 +90,11 @@ export class Appraisals extends Component {
 
 Appraisals.propTypes = propTypes;
 
-export default Appraisals;
+function mapDispatchToProps(dispatch) {
+  return {
+    onFilterClick: () => dispatch(toggleFilters())
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(Appraisals);
