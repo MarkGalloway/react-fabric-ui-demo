@@ -1,4 +1,5 @@
 # Demo project to evaluate React Fabric
+[Live Demo](http://fabric-demo.surge.sh/)
 
 ## Gotchas
 
