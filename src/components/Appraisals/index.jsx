@@ -20,7 +20,8 @@ export class Appraisals extends Component {
     const createAppraisalItem = {
       key: 'NewItem',
       name: 'New',
-      iconProps: { iconName: 'Add' }
+      iconProps: { iconName: 'Add' },
+      onClick: () => history.push(`${match.url}/create`)
     }
 
     const appraisalListItems = [
@@ -67,6 +68,9 @@ export class Appraisals extends Component {
         <Switch>
           <Route exact path={`${match.url}`} render={() =>
             <AppBar rightMenuItems={[createAppraisalItem, ...appraisalListItems]}/>
+          }/>
+          <Route exact path={`${match.url}/create`} render={() =>
+            <AppBar/>
           }/>
           <Route render={() =>
             <AppBar rightMenuItems={[createAppraisalItem]}/>
