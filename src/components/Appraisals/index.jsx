@@ -25,14 +25,24 @@ export class Appraisals extends Component {
         subMenuProps: {
           items: [
             {
-              key: 'emailMessage',
-              name: 'Email message',
-              icon: 'Mail',
+              key: 'ID',
+              name: 'ID',
+              icon: 'Tag',
             },
             {
-              key: 'calendarEvent',
-              name: 'Calendar event',
+              key: 'AppraisedValue',
+              name: 'AppraisedValue',
+              icon: 'Money'
+            },
+            {
+              key: 'CreatedDate',
+              name: 'CreatedDate',
               icon: 'Calendar'
+            },
+            {
+              key: 'ModifiedDate',
+              name: 'ModifiedDate',
+              icon: 'CalendarReply'
             }
           ],
         },
