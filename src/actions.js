@@ -1,18 +1,16 @@
-import moment from 'moment';
+export const TOGGLE_NAV_ACTIVE = 'app/TOGGLE_NAV_ACTIVE';
+export const SET_NAV_ACTIVE = 'app/SET_NAV_ACTIVE';
 
-export const TOGGLE_DRAWER_ACTIVE = 'app/TOGGLE_DRAWER_ACTIVE';
-export const SET_DRAWER_ACTIVE = 'app/SET_DRAWER_ACTIVE';
-
-export function toggleDrawer() {
+export function toggleNavActive() {
   return {
-    type: TOGGLE_DRAWER_ACTIVE,
+    type: TOGGLE_NAV_ACTIVE,
     payload: null
   }
 }
 
-export function closeDrawer() {
+export function closeNav() {
   return {
-    type: SET_DRAWER_ACTIVE,
+    type: SET_NAV_ACTIVE,
     payload: false
   }
 }

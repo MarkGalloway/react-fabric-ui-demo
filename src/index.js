@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const supportsHistory = 'pushState' in window.history;
 ReactDOM.render((
   <Provider store={store}>
     <Router forceRefresh={!supportsHistory}>
-      <App />
+      <App/>
     </Router>
   </Provider>
   ), document.getElementById('root')
