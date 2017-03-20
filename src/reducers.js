@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
+import data from './appraisals.json'
 
 import {
   TOGGLE_NAV_ACTIVE, SET_NAV_ACTIVE,
-  TOGGLE_FILTERS_ACTIVE, SET_FILTERS_ACTIVE
+  TOGGLE_FILTERS_ACTIVE, SET_FILTERS_ACTIVE,
+  SET_APPRAISALS, ADD_APPRAISAL, UPDATE_APPRAISAL
 } from './actions';
 
 
@@ -24,7 +26,8 @@ function appReducer(state = APP_INITIAL_STATE, action) {
 
 
 const APPRAISALS_INITIAL_STATE = {
-  filtersActive: false
+  filtersActive: false,
+  appraisals: data.appraisals
 };
 
 
@@ -34,6 +37,19 @@ function appraisalsReducer(state = APPRAISALS_INITIAL_STATE, action) {
       return { ...state, filtersActive: !state.filtersActive }
     case SET_FILTERS_ACTIVE:
       return { ...state, filtersActive: action.payload }
+    case SET_APPRAISALS:
+      return { ...state, appraisals: action.payload }
+    case ADD_APPRAISAL:
+      return { ...state, appraisals: [ ...state.appraisals, action.payload ] }
+    case UPDATE_APPRAISAL:
+      return {
+        ...state,
+        appraisals: state.appraisals.map(appraisal =>
+          appraisal.id === action.payload.id
+            ? {...appraisal, ...action.payload}
+            : appraisal
+        )
+      }
     default:
       return state
   }

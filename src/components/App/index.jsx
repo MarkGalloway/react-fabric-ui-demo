@@ -12,7 +12,6 @@ const propTypes = {};
 
 class App extends Component {
   render() {
-
     return (
       <Fabric>
         <Switch>

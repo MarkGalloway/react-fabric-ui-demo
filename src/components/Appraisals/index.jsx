@@ -5,6 +5,9 @@ import { Route, Switch } from 'react-router-dom';
 import AppBar from '../AppBar';
 import NavBar from '../NavBar';
 import List from './List';
+import Details from './Details';
+import Edit from './Edit';
+import Create from './Create';
 import { toggleFilters } from '../../actions';
 
 const propTypes = {
@@ -72,6 +75,9 @@ export class Appraisals extends Component {
           <Route exact path={`${match.url}/create`} render={() =>
             <AppBar/>
           }/>
+          <Route exact path={`${match.url}/:appraisalId/edit`} render={() =>
+            <AppBar/>
+          }/>
           <Route render={() =>
             <AppBar rightMenuItems={[createAppraisalItem]}/>
           }/>
@@ -83,9 +89,9 @@ export class Appraisals extends Component {
        {/* Body */}
        <Switch>
           <Route exact path={`${match.url}`} component={List}/>
-          <Route path={`${match.url}/create`} render={() => <div>Create</div>}/>
-          <Route path={`${match.url}/:appraisalId`} render={() => <div>Details</div>}/>
-          <Route path={`${match.url}/:appraisalId/edit`} render={() => <div>Edit</div>}/>
+          <Route exact path={`${match.url}/create`} component={Create}/>
+          <Route exact path={`${match.url}/:appraisalId`} component={Details}/>
+          <Route exact path={`${match.url}/:appraisalId/edit`} component={Edit}/>
         </Switch>
       </div>
     );
