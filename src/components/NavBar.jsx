@@ -51,7 +51,6 @@ export class NavBar extends Component {
         {showNav &&
           <Nav
             className="App-nav"
-            isOnTop={true}
             groups={navLinks}
             selectedKey={match.path}
           />
