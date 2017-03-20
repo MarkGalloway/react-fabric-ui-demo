@@ -109,7 +109,7 @@ Edit.propTypes = propTypes;
 
 function mapStateToProps(state, ownProps) {
   const appraisals = state.appraisals.appraisals;
-  const appraisalID = parseInt(ownProps.match.params.appraisalId);
+  const appraisalID = parseInt(ownProps.match.params.appraisalId, 10);
 
   return {
     appraisal: appraisals.find(a => a.id === appraisalID)
@@ -117,7 +117,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  const appraisalID = parseInt(ownProps.match.params.appraisalId);
+  const appraisalID = parseInt(ownProps.match.params.appraisalId, 10);
 
   return {
     update: data => dispatch(updateAppraisal(appraisalID, data))

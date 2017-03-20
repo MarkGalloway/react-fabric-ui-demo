@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { List as FabricList } from 'office-ui-fabric-react/lib/List';
 
@@ -17,34 +17,27 @@ const propTypes = {
 };
 
 
-export class List extends Component {
-
-
-
-  render() {
-    const { match, history, appraisals } = this.props;
-
-    return (
-      <div>
-        <Filters/>
-        <div className="App-content">
-          <h1 className="App-content-header ms-font-xxl">Appraisals</h1>
-            <div className='AppraisalList' data-is-scrollable={ true }>
-              <FabricList
-                items={appraisals}
-                onRenderCell={(appraisal) => (
-                  <ListItem
-                    key={appraisal.id}
-                    appraisal={appraisal}
-                    onViewClick={() => history.push(`${match.url}/${appraisal.id}`)}
-                  />
-                )}
-              />
-            </div>
+function List({match, history, appraisals}) {
+  return (
+    <div>
+      <Filters/>
+      <div className="App-content">
+        <h1 className="App-content-header ms-font-xxl">Appraisals</h1>
+          <div className='AppraisalList' data-is-scrollable={ true }>
+            <FabricList
+              items={appraisals}
+              onRenderCell={(appraisal) => (
+                <ListItem
+                  key={appraisal.id}
+                  appraisal={appraisal}
+                  onViewClick={() => history.push(`${match.url}/${appraisal.id}`)}
+                />
+              )}
+            />
           </div>
-      </div>
-    );
-  }
+        </div>
+    </div>
+  );
 }
 
 List.propTypes = propTypes;

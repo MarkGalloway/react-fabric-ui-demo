@@ -36,15 +36,14 @@ export class Create extends Component {
       model: model,
       year: year,
       customer: customer,
-      appraised_value: parseInt(appraised_value)
+      appraised_value: parseInt(appraised_value, 10)
     })
 
     history.replace(`/appraisals`)
   }
 
   onCancel() {
-    const { history } = this.props;
-    history.replace(`/appraisals`)
+    this.props.history.replace(`/appraisals`)
   }
 
   render() {

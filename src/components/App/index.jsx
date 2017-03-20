@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric';
 
-// import history from '../../history';
 import Appraisals from '../Appraisals';
 import EmptyPage from './EmptyPage';
 

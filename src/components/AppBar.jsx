@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 
@@ -13,28 +13,24 @@ const defaultProps = {
   rightMenuItems: []
 }
 
-export class AppBar extends Component {
-  render() {
-    const { toggleNav, rightMenuItems } = this.props;
+function AppBar({ toggleNav, rightMenuItems }) {
+  const leftMenuItems = [
+    {
+      key: 'LeftNavItem',
+      name: '',
+      iconProps: { iconName: 'GlobalNavButton' },
+      onClick: () => toggleNav()
+    }
+  ];
 
-    const leftMenuItems = [
-      {
-        key: 'LeftNavItem',
-        name: '',
-        iconProps: { iconName: 'GlobalNavButton' },
-        onClick: () => toggleNav()
-      }
-    ];
-
-    return (
-      <div>
-        <CommandBar
-          items={leftMenuItems}
-          farItems={rightMenuItems}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <CommandBar
+        items={leftMenuItems}
+        farItems={rightMenuItems}
+      />
+    </div>
+  );
 }
 
 AppBar.propTypes = propTypes;
