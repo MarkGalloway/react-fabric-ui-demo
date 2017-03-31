@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import rootReducer from './reducers';
 
+import 'office-ui-fabric-react/dist/css/fabric.min.css';
 import './index.css';
 
 const store = createStore(rootReducer);
