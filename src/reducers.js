@@ -1,23 +1,17 @@
 import { combineReducers } from 'redux';
-import data from './appraisals.json'
 
-import {
-  TOGGLE_NAV_ACTIVE, SET_NAV_ACTIVE,
-  TOGGLE_FILTERS_ACTIVE, SET_FILTERS_ACTIVE,
-  SET_APPRAISALS, ADD_APPRAISAL, UPDATE_APPRAISAL
-} from './actions';
+import * as t from './actionTypes';
 
 
 const APP_INITIAL_STATE = {
   navActive: false
 };
 
-
 function appReducer(state = APP_INITIAL_STATE, action) {
   switch(action.type) {
-    case TOGGLE_NAV_ACTIVE:
+    case t.TOGGLE_NAV_ACTIVE:
       return { ...state, navActive: !state.navActive }
-    case SET_NAV_ACTIVE:
+    case t.SET_NAV_ACTIVE:
       return { ...state, navActive: action.payload }
     default:
       return state
@@ -26,28 +20,29 @@ function appReducer(state = APP_INITIAL_STATE, action) {
 
 
 const APPRAISALS_INITIAL_STATE = {
+  isLoading: false,
   filtersActive: false,
-  appraisals: data.appraisals
+  appraisals: []
 };
-
 
 function appraisalsReducer(state = APPRAISALS_INITIAL_STATE, action) {
   switch(action.type) {
-    case TOGGLE_FILTERS_ACTIVE:
+    case t.SET_IS_LOADING:
+      return { ...state, isLoading: action.payload }
+    case t.TOGGLE_FILTERS_ACTIVE:
       return { ...state, filtersActive: !state.filtersActive }
-    case SET_FILTERS_ACTIVE:
+    case t.SET_FILTERS_ACTIVE:
       return { ...state, filtersActive: action.payload }
-    case SET_APPRAISALS:
+    case t.SET_APPRAISALS:
       return { ...state, appraisals: action.payload }
-    case ADD_APPRAISAL:
+    case t.ADD_APPRAISAL:
       return { ...state, appraisals: [ ...state.appraisals, action.payload ] }
-    case UPDATE_APPRAISAL:
+    case t.SET_APPRAISAL:
+    console.log(action.payload)
       return {
         ...state,
         appraisals: state.appraisals.map(appraisal =>
-          appraisal.id === action.payload.id
-            ? {...appraisal, ...action.payload}
-            : appraisal
+          appraisal.id === action.payload.id ? { ...action.payload } : appraisal
         )
       }
     default:

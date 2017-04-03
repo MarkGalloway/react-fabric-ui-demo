@@ -1,69 +1,78 @@
-import moment from 'moment';
-
-import { uniqueID } from './utils';
-
-export const TOGGLE_NAV_ACTIVE = 'app/TOGGLE_NAV_ACTIVE';
-export const SET_NAV_ACTIVE = 'app/SET_NAV_ACTIVE';
-export const TOGGLE_FILTERS_ACTIVE = 'appraisals/TOGGLE_FILTERS_ACTIVE';
-export const SET_FILTERS_ACTIVE = 'appraisals/SET_FILTERS_ACTIVE';
-export const SET_APPRAISALS = 'appraisals/SET_APPRAISALS';
-export const UPDATE_APPRAISAL = 'appraisals/UPDATE_APPRAISAL';
-export const ADD_APPRAISAL = 'appraisals/ADD_APPRAISAL';
+import * as t from './actionTypes';
 
 export function toggleNavActive() {
   return {
-    type: TOGGLE_NAV_ACTIVE,
+    type: t.TOGGLE_NAV_ACTIVE,
     payload: null
   }
 }
 
 export function closeNav() {
   return {
-    type: SET_NAV_ACTIVE,
+    type: t.SET_NAV_ACTIVE,
     payload: false
+  }
+}
+
+export function setIsLoading(isLoading) {
+  return {
+    type: t.SET_IS_LOADING,
+    payload: isLoading
   }
 }
 
 export function toggleFilters() {
   return {
-    type: TOGGLE_FILTERS_ACTIVE,
+    type: t.TOGGLE_FILTERS_ACTIVE,
     payload: null
   }
 }
 
 export function closeFilters() {
   return {
-    type: SET_FILTERS_ACTIVE,
+    type: t.SET_FILTERS_ACTIVE,
     payload: false
   }
 }
 
 export function setAppraisals(appraisals=[]) {
   return {
-    type: SET_APPRAISALS,
+    type: t.SET_APPRAISALS,
     payload: appraisals
   }
 }
 
-export function updateAppraisal(appraisal_id, data) {
+export function setAppraisal(appraisalId, data) {
   return {
-    type: UPDATE_APPRAISAL,
-    payload: {...data, id: appraisal_id, updated: moment().valueOf()}
+    type: t.SET_APPRAISAL,
+    payload: {...data, id: appraisalId}
   }
 }
 
-export function addAppraisal(data) {
-  const now = moment().valueOf();
-
+export function updateAppraisal(appraisalId, data) {
   return {
-    type: ADD_APPRAISAL,
-    payload: {
-      ...data,
-      id: uniqueID(),
-      created: now,
-      updated: now,
-      cbb_status: "Incomplete",
-      status: "needsNumbers"
-    }
+    type: t.UPDATE_APPRAISAL,
+    payload: {...data, id: appraisalId}
+  }
+}
+
+export function addAppraisal(appraisal) {
+  return {
+    type: t.ADD_APPRAISAL,
+    payload: appraisal
+  }
+}
+
+export function fetchAppraisals() {
+  return {
+    type: t.FETCH_APPRAISALS,
+    payload: null
+  }
+}
+
+export function createAppraisal(data) {
+  return {
+    type: t.CREATE_APPRAISAL,
+    payload: data
   }
 }

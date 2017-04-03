@@ -117,10 +117,10 @@ function mapStateToProps(state, ownProps) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  const appraisalID = parseInt(ownProps.match.params.appraisalId, 10);
+  const appraisalId = parseInt(ownProps.match.params.appraisalId, 10);
 
   return {
-    update: data => dispatch(updateAppraisal(appraisalID, data))
+    update: data => dispatch(updateAppraisal(appraisalId, data))
   }
 }
 
