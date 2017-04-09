@@ -22,8 +22,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp build/index.html build/200.html",
+    "postbuild": "cp build/index.html build/200.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "surge -p ./build -d fabric-demo.surge.sh/",
     "flow": "flow"
   },
   "eslintConfig": {
