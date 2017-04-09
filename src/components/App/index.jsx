@@ -17,7 +17,7 @@ class App extends Component {
           <Route path="/appraisals" component={Appraisals}/>
           <Route path="/tasks" component={EmptyPage}/>
           <Route path="/appointments" component={EmptyPage}/>
-          <Redirect from='/' to='/appraisals'/>
+          <Redirect exact from='/' to='/appraisals'/>
         </Switch>
       </Fabric>
     );
